@@ -14,7 +14,7 @@ class _InputPenjualanState extends State<InputPenjualan> {
   final _fromkey = GlobalKey<FormState>();
   Future saveUpload() async {
     final response =
-        await http.post(Uri.parse("http://192.168.1.28:80/api/inputs"), body: {
+        await http.post(Uri.parse("http://192.168.1.10:80/api/inputs"), body: {
       "namaBarang": nameController.text,
       "namaPembeli": pembeliController.text,
       "Jumlah": jumlahController.text,
