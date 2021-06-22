@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_wahyu/ui/editpenjualan.dart';
 import 'package:flutter_application_wahyu/ui/inputpenjualan.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_application_wahyu/Auth/auth_page.dart';
 
 class DataScreen extends StatefulWidget {
   const DataScreen({
