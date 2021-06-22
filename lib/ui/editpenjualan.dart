@@ -1,32 +1,28 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_wahyu/ui/home.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class InputPenjualan extends StatefulWidget {
-  @override
-  _InputPenjualanState createState() => _InputPenjualanState();
-}
-
-class _InputPenjualanState extends State<InputPenjualan> {
-  final _fromkey = GlobalKey<FormState>();
-  Future saveUpload() async {
-    final response =
-        await http.post(Uri.parse("http://192.168.1.28:80/api/inputs"), body: {
-      "namaBarang": nameController.text,
-      "namaPembeli": pembeliController.text,
-      "Jumlah": jumlahController.text,
-      "harga": hargaController.text,
-    });
-    return jsonDecode(response.body);
-  }
-
+class EditPenjualan extends StatelessWidget {
+  final Map input;
+  EditPenjualan({@required this.input});
+  final _formkey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController pembeliController = TextEditingController();
   TextEditingController jumlahController = TextEditingController();
   TextEditingController hargaController = TextEditingController();
+  Future updateData() async {
+    final response = await http.put(
+        Uri.parse(
+            "http://192.168.1.28:80/api/inputs/" + input['id'].toString()),
+        body: {
+          "namaBarang": nameController.text,
+          "namaPembeli": pembeliController.text,
+          "Jumlah": jumlahController.text,
+          "harga": hargaController.text,
+        });
+    return jsonDecode(response.body);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,7 @@ class _InputPenjualanState extends State<InputPenjualan> {
         leading: Icon(Icons.keyboard_arrow_left),
       ),
       body: Form(
-        key: _fromkey,
+        key: _formkey,
         child: Padding(
           padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
           child: ListView(
@@ -43,7 +39,7 @@ class _InputPenjualanState extends State<InputPenjualan> {
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: TextFormField(
-                  controller: nameController,
+                  controller: nameController..text = input['namaBarang'],
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Nama Barang",
@@ -60,7 +56,7 @@ class _InputPenjualanState extends State<InputPenjualan> {
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: TextFormField(
-                  controller: pembeliController,
+                  controller: pembeliController..text = input['namaPembeli'],
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Keterangan Barang",
@@ -77,7 +73,7 @@ class _InputPenjualanState extends State<InputPenjualan> {
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: TextFormField(
-                  controller: jumlahController,
+                  controller: jumlahController..text = input['Jumlah'],
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Jumlah Barang",
@@ -94,7 +90,7 @@ class _InputPenjualanState extends State<InputPenjualan> {
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: TextFormField(
-                  controller: hargaController,
+                  controller: hargaController..text = input['harga'],
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                       labelText: "Harga Barang",
@@ -121,8 +117,8 @@ class _InputPenjualanState extends State<InputPenjualan> {
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
-                          if (_fromkey.currentState.validate()) {
-                            saveUpload().then((value) {
+                          if (_formkey.currentState.validate()) {
+                            updateData().then((value) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

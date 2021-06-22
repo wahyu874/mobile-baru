@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_wahyu/models/penjualan.dart';
+import 'package:flutter_application_wahyu/ui/home.dart';
 
 import 'package:flutter_application_wahyu/ui/inputpenjualan.dart';
-import './menuDrawer.dart' as menuDrawer;
+
 import 'produk.dart';
 
 class Beranda extends StatefulWidget {
@@ -31,10 +31,8 @@ class _BerandaState extends State<Beranda> {
           IconButton(
             icon: Icon(Icons.notifications_active),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext) => InputPenjualan()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext) => DataScreen()));
             },
           )
         ],

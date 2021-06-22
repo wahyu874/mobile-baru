@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_wahyu/Auth/auth_page.dart';
 import "./beranda.dart" as beranda;
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: Container(
-        child: beranda.Beranda(),
+        child: LoginPage(),
       ),
     );
   }

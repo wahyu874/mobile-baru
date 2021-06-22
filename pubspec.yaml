@@ -23,11 +23,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+4
-  sqflite: ^2.0.0+3
+  http: any
   path_provider: ^2.0.1
-  intl: ^0.17.0
-  datetime_picker_formfield: ^1.0.0 
+  email_validator: ^2.0.1
+  firebase_auth: ^1.4.1
+  flutter_login: ^1.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
