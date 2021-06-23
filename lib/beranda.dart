@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_wahyu/Auth/auth.dart';
 import 'package:flutter_application_wahyu/ui/home.dart';
 
 import 'package:flutter_application_wahyu/ui/inputpenjualan.dart';
@@ -75,10 +76,18 @@ class _BerandaState extends State<Beranda> {
             new ListTile(
               title: new Text('About'),
               trailing: new Icon(Icons.info),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext) => LoginPage()));
+              },
             ),
             new ListTile(
               title: new Text('Setting'),
               trailing: new Icon(Icons.settings),
+            ),
+            new ListTile(
+              title: new Text('Logout'),
+              trailing: new Icon(Icons.exit_to_app_outlined),
             ),
           ],
         ),

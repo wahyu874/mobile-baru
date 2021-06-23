@@ -14,7 +14,7 @@ class DataScreen extends StatefulWidget {
 }
 
 class _DataScreenState extends State<DataScreen> {
-  final String url = "http://192.168.1.10/api/inputs";
+  final String url = "http://192.168.1.28/api/inputs";
 
   Future getData() async {
     var response = await http.get(Uri.parse(url));
@@ -23,7 +23,7 @@ class _DataScreenState extends State<DataScreen> {
   }
 
   Future deleteData(String dataId) async {
-    final String url = "http://192.168.1.10/api/inputs/" + dataId;
+    final String url = "http://192.168.1.28/api/inputs/" + dataId;
     var response = await http.delete(Uri.parse(url));
 
     return jsonDecode(response.body);

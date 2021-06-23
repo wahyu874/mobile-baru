@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_wahyu/beranda.dart';
 import 'package:flutter_login/flutter_login.dart';
-import 'package:flutter_application_wahyu/ui/home.dart';
 import 'package:provider/provider.dart';
 import 'auth1.dart';
 
 const users = const {
-  'dribbble@gmail.com': '12345',
+  'admin@gmail.com': '12345678',
   'hunter@gmail.com': 'hunter',
 };
 
@@ -57,14 +55,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: 'Wahyu Computer',
-      // logo: 'assets/images/ecorp-lightblue.png',
+      title: 'RUANG LOAK',
+
       onLogin: _authUserLogin,
       onSignup: _authUserSignUp,
       onSubmitAnimationCompleted: () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => Beranda(),
-        ));
+        Provider.of<Auth>(context, listen: false).tempData();
       },
       onRecoverPassword: _recoverPassword,
     );
